@@ -528,7 +528,7 @@ const Utils = class {
     const storeRecords = this.normToStore(records)
     for (let [type, item] of Object.entries(storeRecords)) {
       if (!this.hasProperty(state, type)) {
-        Vue.set(state, type, {})
+        state[type] = {}
         // If there's no type, then there are no existing records to merge
         merging = false
       }
@@ -539,7 +539,7 @@ const Utils = class {
             data = merge(oldRecord, data)
           }
         }
-        Vue.set(state[type], id, data)
+        state[type][id] = data
       }
     }
   }

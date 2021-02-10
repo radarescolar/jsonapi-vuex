@@ -23,7 +23,7 @@ export default () => {
         throw `deleteRecord: Missing type or id: ${record}`
       }
       try {
-        Vue.delete(state[type], id)
+        delete state[type][id]
       } catch (err) {
         if (err instanceof TypeError) {
           // Trying to delete non-existent object - ignore
@@ -71,7 +71,7 @@ export default () => {
         const storeRecords = get(state, [type], {})
         for (let id of Object.keys(storeRecords)) {
           if (!utils.hasProperty(item, id)) {
-            Vue.delete(state[type], id)
+            delete state[type][id]
           }
         }
       }
